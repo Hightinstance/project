@@ -1,30 +1,62 @@
-# vue_smart_black
+1：锤子商城实战
+（1）	环境配置
+Vue脚手架，vuex,vue-router
+ (2) 创建目录结构
+  
+ (2)组件拆分（页面分析）
+公共样式引入 <link rel="stylesheet" href="/src/assets/css/reset.css">
+拆分头部样式：公共组件<header>
+(3)shop组件
+购物车组件拆分Item组件：进行组件数据的传递来渲染界面；
+Item：需求
+（1）显示当前商品 
+（2）点击的时候颜色切换，根据颜色你index给标签绑定事件，给标签添加选中的样式  （3）把静态图片用动态的来代替（图片的链接文字），价格，颜色，图片的切换。
+:class="{'active':index==itemIndex}" //表示当前被选中的样式
 
-> A Vue.js project
+(4)购物车组件（头部组件，全局都可以看到，需要拆分为组件）vuex来管理，全局的数据
+功能实现：
+（1）加入购物车功能 （点击的时候加入功能实现）
+（2）删除购物车功能 （在购车车组件，点击删除的时候删除里面的信息）
+（3）最大数值限制功能，弹出窗口 （当商品限购数量超过最大值的时候，弹出警告窗口）
+（4）弹出窗口的隐藏显示，加入购物车动态展示 （默认隐藏购物车）
+（5）小球飞入的功能实现 （在点击加入购物车的动画过程）
 
-## Build Setup
+（5）商品详情页展示
+（1）商品详情页组件静态编写
+（2）路由组件的配置路径和点击跳转，（商品详情数据的传递）
+ <router-link :to="{ path: '/item', query: { ItemId: `${item.sku_info[itemIndex].sku_id}` }}"></router-link>
+（3）根据传输的ID显示动态的界面
+（4）颜色，图片循环显示，状态的选中
+（5）动态交互，点击颜色路由的切换，商品图片的切换
 
-``` bash
-# install dependencies
-npm install
+（6）购物车详情页展示
+ 
+（1）	分析组件的位置，为路由组件（配置路由器），拆分为静态组件
+（2）	渲染为动态的界面（item数据循环，显示，路由的跳转），删除功能
+（3）	界面自己的交互行为
+（4）	选中和非选中状态的操作，首先获取按钮的状态，然后获取全选按钮的状态，进行操作
+（5）	删除所有选中商品，选中所有商品，计算选中的价格和数量
+（6）	路由连接跳转，在有商品选中的情况下
 
-# serve with hot reload at localhost:8080
-npm run dev
 
-# build for production with minification
-npm run build
+（7）订单结算页展示
+1：购物清单信息：（1）商品信息套取 （2）运费的计算
+2：收货地址和发票信息：（简单一些功能）
+（1）	收货地址动态页面替换 (2)选中状态的切换 ，点切换选中状态（3）添加新地址的窗口，点击组件的关闭可以关闭显示（组件的通信）父类定义方法子类，进行调用。
+（2）将提交的数据放入数组中，（地址，发票信息，选择的数值，价格，运费，时间等等）
+（3）信息提交的保存之后，购物车的商品应该被去除。
+（4）跳转到支付页面
 
-# build for production and view the bundle analyzer report
-npm run build --report
+（7）	adress-pop组件功能实现
+（1）	表单数据的自动搜集
+（2）	字段的检验功能
+（3）	选择市区三级联动
+（4）	点击默认地址的选中状态
+（5）	信息验证功能，开启保存按钮。（深度监视当表单每一项信息填写的时候都要进行验证）
+（6）	点击按钮的时候加入地址栏，更新默认值，关闭窗口，
 
-# run unit tests
-npm run unit
+（8）	订单界面
+（1）	在路由里面ID数值，筛选出数值在进行动态编写。
+（2）	点击支付之后，状态的切换。
+（3）	个人中心界面，子路由的跳转。
 
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
